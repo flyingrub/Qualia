@@ -126,6 +126,10 @@ public class Instanciate : MonoBehaviour {
                 c.hueRotate();
             }
         }
+        if (Input.GetKeyDown("v"))
+        {
+            ScreenCapture.CaptureScreenshot(System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".png");
+        }
         if (dsps.Count > 0)
         {
             addRandomCube();
@@ -307,9 +311,14 @@ public class Instanciate : MonoBehaviour {
         {
             return;
         }
-        Debug.Log("randomCube");
-        Vector3 pos = Random.onUnitSphere * Random.Range(10, randomRadius) +transform.position;
+        double x, z, angle;
+        angle = Random.Range(0.0f, 2f*(float)Math.PI);
+        x = Math.Cos(angle);
+        z = Math.Sin(angle);
+        Vector3 pos = new Vector3((float)x, 0f, (float)z) * Random.Range(15, 15 + randomRadius) + transform.position;
         pos.y = 15;
+
+        Debug.Log("randomCube" + pos);
         Transform randomC = Instantiate(cube, pos , Random.rotation);
         randomC.GetComponent<CubeData>().addRandomTorque();
         for (int i = 0; i< Random.Range(10,randomSize); i++)
@@ -321,6 +330,11 @@ public class Instanciate : MonoBehaviour {
     public void toggleGlobal()
     {
         isGlobal = !isGlobal;
+    }
+
+    public void pinch(float pinch)
+    {
+        toggleGlobal();
     }
  
     private void IncreaseTerrain()

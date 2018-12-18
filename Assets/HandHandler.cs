@@ -35,13 +35,19 @@ public class HandHandler {
             float pitch = direction.Pitch * 180.0f / (float)Math.PI;
             float roll = normal.Roll * 180.0f / (float)Math.PI;
             float yaw = direction.Yaw * 180.0f / (float)Math.PI;
-            //Debug.Log(handPosition + "||" + newPosition + "||" + roll + "||" + handSpeed);
+            Debug.Log(pitch + "||" + roll + "||" + yaw + "||" + hand.PinchStrength);
+            if (hand.PinchStrength > 0.98)
+            {
+                timeSinceLastCall = System.DateTime.Now;
+                Instanciate.singleton.pinch(hand.PinchStrength);
+                Debug.Log("pinch");
+            }
             if (-60 < roll && roll < 60 && handSpeed.z < - 500)
             {
                 timeSinceLastCall = System.DateTime.Now;
                 Debug.Log("Hand Up");
                 Instanciate.singleton.gravityOff();
-            } else if (-120 < roll && roll > 120 && handSpeed.z > 400)
+            } else if (-120 < roll && roll > 70 && handSpeed.z > 500)
             {
                 timeSinceLastCall = System.DateTime.Now;
                 Debug.Log("Hand down");
