@@ -36,11 +36,10 @@ public class Instanciate : MonoBehaviour {
 
     void Start()
     {
+        CubeData.globalColor = Color.red;
         dsps = new List<FMOD.DSP>();
         singleton = this;
         playerState = FMODUnity.RuntimeManager.CreateInstance(PlayerStateEvent);
-        playerState.setTimelinePosition(100000);
-
         lowlevelSystem = FMODUnity.RuntimeManager.LowlevelSystem;
         if (!masterDSP.hasHandle())
         {

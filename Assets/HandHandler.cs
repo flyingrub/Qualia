@@ -42,12 +42,12 @@ public class HandHandler {
                 Instanciate.singleton.pinch(hand.PinchStrength);
                 Debug.Log("pinch");
             }
-            if (-60 < roll && roll < 60 && handSpeed.z < - 500)
+            if (-60 < roll && roll < 60 && handSpeed.z < - 700)
             {
                 timeSinceLastCall = System.DateTime.Now;
                 Debug.Log("Hand Up");
                 Instanciate.singleton.gravityOff();
-            } else if (-120 < roll && roll > 70 && handSpeed.z > 500)
+            } else if (-120 < roll && roll > 70 && handSpeed.z > 700)
             {
                 timeSinceLastCall = System.DateTime.Now;
                 Debug.Log("Hand down");
